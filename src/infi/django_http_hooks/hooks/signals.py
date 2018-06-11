@@ -15,6 +15,7 @@ hooks = {}
 
 
 def init():
+    '''being called only by HooksConfig.ready()'''
     logger.info('Initialize Django HTTP Hooks')
     all_tables = connection.introspection.table_names()
     if 'hooks_hook' in all_tables:
@@ -38,7 +39,7 @@ def invalidate_hooks(**kwargs):
 
 
 def init_hooks(**kwargs):
-    '''should be called for every change in Hook model'''
+    '''populate cached variable hooks with all records of Hook model. Should be called for every change in Hook'''
     global hooks
     try:
         all_hooks = Hook.objects.all()
@@ -73,9 +74,10 @@ def register_signal(signal_name, model):
 
 
 def handler(sender, signal_, **kwargs):
-    '''being triggered by registered signals and create a callback according to the hook'''
+    '''being triggered by registered signals and create a callback according to the hook found in cached hooks'''
     try:
         global hooks
+        # search for the hook of the given sender and signal name according to key composed from signal_name & sender
         hook_key = '{}_{}'.format(sender.__name__.lower(), signal_)
 
         hook = hooks.get(hook_key)
@@ -96,6 +98,7 @@ def handler(sender, signal_, **kwargs):
 
 
 def get_signal_handler_by_name(signal_name):
+    '''wrapper for handler, sending it the signal name, to be use in handler'''
     def signal_handler(sender, **kwargs):
         handler(sender, signal_name, **kwargs)
     return signal_handler

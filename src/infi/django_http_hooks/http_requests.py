@@ -3,7 +3,7 @@ import json
 
 
 def send_request(url, method, **kwargs):
-    #parse headers from given json
+    '''send http request according to given configuration, assuming headers and payload are valid jsons'''
     headers = {}
     if kwargs.get('headers'):
         # headers are expected to be a valid json
