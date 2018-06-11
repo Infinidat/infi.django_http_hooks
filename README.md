@@ -40,8 +40,8 @@ Usage
 
 A list representing a command to reload the django project.   
 This command will be called for any update in Hooks (deleting/updating hooks or a new hook is created).   
-**Warning**: if this setting is missing or the command isn't working, any changes of hooks won't be working (no callbacks will be created).
-This command should be compliance with the environment and OS which the django project runs at.  
+**Warning**: If this setting is missing or the command isn't working, any changes of hooks won't be working (no callbacks will be created).
+This command should be compatible with the environment and OS which the django project runs at.  
 For example:   
 - ['touch', 'demo_project/wsgi.py'] - Useful when django runs on local development server. 
 Will update a file in the django project which will cause the server to refresh.
@@ -61,7 +61,7 @@ Switch off the django_http_hooks app.
 
 An Hook can be related to any model in the django project and to multiple valid signals.    
 Signals can be django known signals (such as post_save, post_delete etc.) or custom ones (inherit from django.dispatch.dispatcher.Signal).  
-**The django_http_models are being registered in the admin page so can be manipulated via the admin as well as using api.**
+**The django_http_hooks models are being registered in the admin page so Hooks can be added or manipulated via the admin page as well as using api.**
 
 * model - A foreign column to django ContentType model. Can be any model existed in the django project.
 * signals - A many to many column to django_http_models.models.Signal model.   
@@ -116,12 +116,12 @@ with status='waiting' and is connected to its hook (column hook).
 #### Send Callbacks
 Run the management command send_callbacks in one of the following options:
 
-    manage send_callbacks # will run over all callback with status=='waiting'
+    manage send_callbacks # will send all callbacks with status=='waiting'
     
-    manage send_callbacks --hook_id  <the id of the hook to filter all its related callback>
+    manage send_callbacks --hook_id  <the id of the hook to filter all its related callback> # will send all callbacks of the given hook 
     
-    manage send callback --callback <callback_id> <callback_id> ... # will run over only the mentioned callbacks
-The process will update any callback, with the response details received for its request:
+    manage send callback --callback <callback_id> <callback_id> ... # will send only the mentioned callbacks
+The send_callbacks process will update any processed callback, with the response details received for its request:
 - Successfull request will update the callback status_details with the status code
 - Failed request will update the callback status_details with the error details
 - The callback update_datetime will be updated to the run time and its status will be updated to 'sent' or 'error'.
