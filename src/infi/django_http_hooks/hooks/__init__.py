@@ -1,0 +1,1 @@
+default_app_config = 'infi.django_http_hooks.hooks.apps.HooksConfig'
