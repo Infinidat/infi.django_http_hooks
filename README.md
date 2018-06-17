@@ -36,7 +36,7 @@ Usage
 
 #### Configure Settings
 
-######DJANGO_HTTP_HOOKS_RELOAD 
+###### DJANGO_HTTP_HOOKS_RELOAD 
 
 A list representing a command to reload the django project.   
 This command will be called for any update in Hooks (deleting/updating hooks or a new hook is created).   
