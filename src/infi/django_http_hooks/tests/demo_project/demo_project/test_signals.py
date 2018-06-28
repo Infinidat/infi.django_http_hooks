@@ -233,13 +233,18 @@ class SignalsTestCase(TestCase):
         callback_res = Callback.objects.filter(status='waiting', hook=hook)
         self.assertEqual(len(callback_res), 1)
         callback = callback_res[0]
-
+        print '**** test_payload_template - before *****'
+        print callback.payload
+        print type(callback.payload)
+        print '******************************************'
         res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
-
+        print '**** test_payload_template - after *****'
         res_dict = res.json()
+        print res_dict
         payload = res_dict['payload']
         print payload
         print type(payload)
+        print '******************************************'
         payload = json.loads(payload)
 
         self.assertEqual(payload['id'], self.user_.id)
