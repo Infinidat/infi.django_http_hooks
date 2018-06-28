@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ac2b6b3-15d2-4e33-b0f5-54db44c4b203" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/api.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/exceptions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/management/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/management/commands/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/management/commands/send_callbacks.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/migrations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/signals.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/http_requests.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/buildout.cfg" afterPath="$PROJECT_DIR$/buildout.cfg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py" afterPath="$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,21 +17,27 @@
       <file leaf-file-name="signals.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+            <state relative-caret-position="516">
+              <caret line="91" column="15" lean-forward="false" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1530176677477" expanded="true" signature="1076:1365" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1175:1365" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1502:2457" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1643:2216" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1691:1816" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1844:2216" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="1887:2216" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="2241:2457" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="2500:3161" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="2505:2645" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1530176677477" expanded="true" signature="3203:4321" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="3326:4018" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="3586:4018" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="3816:3950" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="4043:4321" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="4368:4563" ph="..." />
+                <marker date="1530176677477" expanded="true" signature="4490:4537" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="122" column="60" lean-forward="true" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="60" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -54,8 +45,8 @@
       <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="30" />
+            <state relative-caret-position="502">
+              <caret line="79" column="26" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -63,13 +54,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send_callbacks.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/management/commands/send_callbacks.py">
+      <file leaf-file-name="buildout.cfg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/buildout.cfg">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="51" lean-forward="false" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
+            <state relative-caret-position="202">
+              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="885">
+              <caret line="59" column="6" lean-forward="false" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="http_requests.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/http_requests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1530176677477" expanded="true" signature="70:763" ph="..." />
               </folding>
             </state>
           </provider>
@@ -78,34 +89,12 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+            <state relative-caret-position="335">
+              <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
+                <marker date="1530176677476" expanded="true" signature="2803:2866" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="436">
-                <caret line="110" column="158" lean-forward="false" selection-start-line="110" selection-start-column="158" selection-end-line="110" selection-end-column="158" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exceptions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/exceptions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -113,10 +102,22 @@
       <file leaf-file-name="test_signals.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="814">
-              <caret line="271" column="30" lean-forward="false" selection-start-line="271" selection-start-column="30" selection-end-line="271" selection-end-column="30" />
+            <state relative-caret-position="503">
+              <caret line="241" column="26" lean-forward="false" selection-start-line="241" selection-start-column="26" selection-end-line="241" selection-end-column="26" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wsgi_server.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -125,10 +126,12 @@
       <file leaf-file-name="api.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+            <state relative-caret-position="405">
+              <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <marker date="1530176677475" expanded="true" signature="300:976" ph="..." />
+                <marker date="1530176677475" expanded="true" signature="806:976" ph="..." />
+                <marker date="1530176677475" expanded="true" signature="974:976" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,7 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>signal</find>
       <find>handler</find>
       <find>partial</find>
       <find>HTTPError</find>
@@ -175,6 +177,7 @@
       <find>hook_obj</find>
       <find>django_http_requests</find>
       <find>InvalidSignalError</find>
+      <find>content_type</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -195,7 +198,6 @@
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/admin.py" />
         <option value="$PROJECT_DIR$/buildout.cfg" />
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/utils.py" />
-        <option value="$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py" />
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/http_requests.py" />
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/hooks/api.py" />
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_requests.py" />
@@ -209,6 +211,7 @@
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/exceptions.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py" />
+        <option value="$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py" />
       </list>
     </option>
   </component>
@@ -232,7 +235,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -244,6 +246,11 @@
             <path>
               <item name="infi.django_http_hooks" type="b2602c69:ProjectViewProjectNode" />
               <item name="infi.django_http_hooks" type="462c0819:PsiDirectoryNode" />
+              <item name="eggs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infi.django_http_hooks" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infi.django_http_hooks" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -274,17 +281,7 @@
               <item name="infi" type="462c0819:PsiDirectoryNode" />
               <item name="django_http_hooks" type="462c0819:PsiDirectoryNode" />
               <item name="hooks" type="462c0819:PsiDirectoryNode" />
-              <item name="management" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infi.django_http_hooks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infi.django_http_hooks" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="infi" type="462c0819:PsiDirectoryNode" />
-              <item name="django_http_hooks" type="462c0819:PsiDirectoryNode" />
-              <item name="hooks" type="462c0819:PsiDirectoryNode" />
-              <item name="management" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infi.django_http_hooks" type="b2602c69:ProjectViewProjectNode" />
@@ -317,6 +314,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,14 +322,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../venvy/bin/python2.7" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/infi/django_http_hooks" />
-      <recent name="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/hooks" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project" />
       <recent name="$PROJECT_DIR$/src/infi/django_http_hooks/tests" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/infi/django_http_hooks" />
+      <recent name="$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/hooks" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -387,24 +385,36 @@
     <frame x="0" y="23" width="1920" height="981" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16453674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16932908" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859025" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25840092" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2859025" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16453674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -487,20 +497,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eggs/requests-2.18.4-py2.py3-none-any.ovo/requests/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="99" column="24" lean-forward="false" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eggs/requests-2.18.4-py2.py3-none-any.ovo/requests/api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eggs/requests-2.18.4-py2.py3-none-any.ovo/requests/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/eggs/requests-2.18.4-py2.py3-none-any.ovo/requests/api.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.2/python_stubs/260040636/exceptions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -547,7 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="139" column="13" lean-forward="false" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -569,7 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
           <caret line="813" column="8" lean-forward="false" selection-start-line="813" selection-start-column="8" selection-end-line="813" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -619,17 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="993" column="6" lean-forward="false" selection-start-line="993" selection-start-column="6" selection-end-line="993" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#33#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,9 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,39 +653,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/views.py" />
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/buildout.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state relative-caret-position="202">
+          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/http_requests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <marker date="1530176677477" expanded="true" signature="70:763" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -711,16 +686,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="122" column="60" lean-forward="true" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+        <state relative-caret-position="335">
+          <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
           <folding>
             <element signature="e#24#63#0" expanded="true" />
+            <marker date="1530176677476" expanded="true" signature="2803:2866" ph="..." />
           </folding>
         </state>
       </provider>
@@ -735,28 +710,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="405">
+          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <marker date="1530176677475" expanded="true" signature="300:976" ph="..." />
+            <marker date="1530176677475" expanded="true" signature="806:976" ph="..." />
+            <marker date="1530176677475" expanded="true" signature="974:976" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/signals.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+        <state relative-caret-position="516">
+          <caret line="91" column="15" lean-forward="false" selection-start-line="91" selection-start-column="15" selection-end-line="91" selection-end-column="15" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1530176677477" expanded="true" signature="1076:1365" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1175:1365" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1502:2457" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1643:2216" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1691:1816" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1844:2216" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="1887:2216" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="2241:2457" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="2500:3161" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="2505:2645" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1530176677477" expanded="true" signature="3203:4321" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="3326:4018" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="3586:4018" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="3816:3950" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="4043:4321" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="4368:4563" ph="..." />
+            <marker date="1530176677477" expanded="true" signature="4490:4537" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="30" />
+        <state relative-caret-position="502">
+          <caret line="79" column="26" lean-forward="false" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
           </folding>
@@ -774,22 +767,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="271" column="30" lean-forward="false" selection-start-line="271" selection-start-column="30" selection-end-line="271" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/hooks/management/commands/send_callbacks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
           <caret line="39" column="51" lean-forward="false" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/demo_project/demo_project/test_signals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="241" column="26" lean-forward="false" selection-start-line="241" selection-start-column="26" selection-end-line="241" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infi/django_http_hooks/tests/wsgi_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -26,6 +26,10 @@ def process_request(environ, start_response):
 
     body['payload'] = json.loads(environ['wsgi.input'].read())
 
+    print body['payload']
+    print type(body['payload'])
+
+
     response = dict(code='200 Accepted',
                     body=json.dumps(body))
 
