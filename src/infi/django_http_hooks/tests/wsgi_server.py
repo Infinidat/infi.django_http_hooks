@@ -1,4 +1,4 @@
-from gevent import pywsgi, monkey
+from gevent import pywsgi
 import json
 
 
@@ -24,7 +24,13 @@ def process_request(environ, start_response):
     if environ.get('HTTP_TEST_TOKEN'):
         body['test_token'] = environ['HTTP_TEST_TOKEN']
 
-    body['payload'] = json.loads(environ['wsgi.input'].read())
+    payload =  environ['wsgi.input'].read()
+    print payload
+    print type(payload)
+    body['payload'] = json.loads(payload)
+    print body['payload']
+    print type(body['payload'])
+
 
     response = dict(code='200 Accepted',
                     body=json.dumps(body))

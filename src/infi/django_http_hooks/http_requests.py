@@ -15,7 +15,6 @@ def send_request(url, method, **kwargs):
     res = requests.request(method=method,
                            url=url,
                            headers=headers,
-                           # payload is a valid json as it was created by utils.set_payload
-                           json=kwargs.get('payload'))
+                           data=kwargs.get('payload'))
     res.raise_for_status()
     return res

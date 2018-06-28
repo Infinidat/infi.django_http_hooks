@@ -2,51 +2,54 @@
 from __future__ import unicode_literals
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.contrib.auth.models import User
 
+
+
+HTTP_METHODS = ['POST', 'PUT', 'PATCH', 'GET', 'DELETE']
+
+CONTENT_TYPES = ['application/json', 'application/xml', 'text/xml', 'text/plain','application/javascript', 'text/html']
 
 class Signal(models.Model):
     signal              = models.CharField(max_length=256, unique=True, help_text='Full path of the signal class')
-    update_time         = models.DateTimeField(null=True, blank=True)
-    create_datetime     = models.DateTimeField(null=True, blank=True)
-    user                = models.ForeignKey(User)
+    update_time         = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
     def __str__(self):
         return self.signal
 
 
 class Hook(models.Model):
-    update_datetime     = models.DateTimeField(null=True, blank=True)
-    create_datetime     = models.DateTimeField(null=True, blank=True)
+    name = models.CharField(max_length=512, null=True, blank=True)
+    update_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+
     # Signal details: Can be only one Hook for a model. An hook can be connected to multiple signals.
     model               = models.OneToOneField(ContentType, blank=True, null=True)
     signals             = models.ManyToManyField(Signal)
 
     # Hook HTTP Request details.
-    target_url          = models.CharField(max_length=256)
-    http_method         = models.CharField(max_length=64, null=True, blank=True)
-    headers             = models.CharField(max_length=2048, null=True, blank=True)
-    payload_template    = models.CharField(max_length=2048, null=True, blank=True)
-    serializer_class    = models.CharField(max_length=256,null=True, blank=True, help_text='Full path of the serializer class')
-    content_type        = models.CharField(max_length=128, null=True, blank=True)
+    target_url          = models.URLField(max_length=512)
+    http_method         = models.CharField(max_length=64, null=True, blank=True, choices=[(m, m) for m in HTTP_METHODS])
+    headers             = models.TextField(null=True, blank=True)
+    payload_template    = models.TextField(null=True, blank=True, help_text='Use {{}} for any variable template')
+    serializer_class    = models.CharField(max_length=256, null=True, blank=True, help_text='Full path of the serializer class')
+    content_type        = models.CharField(max_length=128, null=True, blank=True, choices=[(c, c) for c in CONTENT_TYPES])
 
-    # for internal use, visible in admin only
-    comments            = models.CharField(max_length=1024, null=True, blank=True)
-    user                = models.ForeignKey(User)
+
 
     def __str__(self):
-        return '{}_###({})###'.format(self.model, ','.join([s.signal for s in self.signals.all()]))
+        return '{name}({date})'.format(name=self.name, date=self.create_datetime.date())
 
 
 class Callback(models.Model):
-    update_datetime     = models.DateTimeField(null=True, blank=True)
-    create_datetime     = models.DateTimeField(null=True, blank=True)
+    update_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
-    target_url          = models.CharField(max_length=256)
-    headers             = models.CharField(max_length=2048, null=True, blank=True)
-    payload             = models.CharField(max_length=4096, null=True, blank=True)
+    target_url          = models.URLField(max_length=512)
+    headers             = models.TextField(null=True, blank=True)
+    payload             = models.TextField(null=True, blank=True)
     content_type        = models.CharField(max_length=128, null=True, blank=True)
-    http_method         = models.CharField(max_length=64, null=True, blank=True)
+    http_method         = models.CharField(max_length=64, null=True, blank=True, choices=[(m, m) for m in HTTP_METHODS])
 
     hook                = models.ForeignKey(Hook)
 
