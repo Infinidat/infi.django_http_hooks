@@ -57,4 +57,3 @@ buildout.in
 
 src/infi/django_http_hooks/__version__.py
 get-pip.py
-.idea/
