@@ -10,6 +10,15 @@ class HookAdmin(admin.ModelAdmin):
     search_fields = ('model', 'name', 'target_url')
     filter_horizontal = ('signals',)
 
+    fieldsets = (
+        ('General Hook Details', {
+            'fields': ('name', 'model', 'signals')
+        }),
+        ('Hook HTTP Request Details', {
+            'fields': ('target_url', 'http_method', 'headers', 'content_type', 'payload_template', 'serializer_class')
+        }),
+    )
+
 
 class CallbackAdmin(admin.ModelAdmin):
     list_display = ('hook', 'status', 'status_details', 'create_datetime')

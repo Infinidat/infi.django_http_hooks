@@ -24,17 +24,16 @@ class Hook(models.Model):
     create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
     # Signal details: Can be only one Hook for a model. An hook can be connected to multiple signals.
-    model               = models.OneToOneField(ContentType, blank=True, null=True)
+    model               = models.OneToOneField(ContentType)
     signals             = models.ManyToManyField(Signal)
 
     # Hook HTTP Request details.
     target_url          = models.URLField(max_length=512)
-    http_method         = models.CharField(max_length=64, null=True, blank=True, choices=[(m, m) for m in HTTP_METHODS])
+    http_method         = models.CharField(max_length=64, default='POST', choices=[(m, m) for m in HTTP_METHODS])
     headers             = models.TextField(null=True, blank=True)
-    payload_template    = models.TextField(null=True, blank=True, help_text='Use {{}} for any variable template')
-    serializer_class    = models.CharField(max_length=256, null=True, blank=True, help_text='Full path of the serializer class')
+    payload_template    = models.TextField(null=True, blank=True, help_text='Use {{}} for variables template. Placeholder names can be any attribute in the model. Leave empty for default payload. See documentation for further details.  ')
+    serializer_class    = models.CharField(max_length=256, null=True, blank=True, help_text='Full path of the serializer class. Leave empty for default payload.')
     content_type        = models.CharField(max_length=128, null=True, blank=True, choices=[(c, c) for c in CONTENT_TYPES])
-
 
 
     def __str__(self):

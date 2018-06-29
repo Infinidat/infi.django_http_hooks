@@ -9,7 +9,7 @@ def send_request(url, method, **kwargs):
         # headers are expected to be a valid json
         headers = json.loads(kwargs['headers'])
     # add content-type to the headers
-    if kwargs.get('conent_type'):
+    if kwargs.get('content_type'):
         headers['Content-Type'] = kwargs['content_type']
 
     res = requests.request(method=method,
