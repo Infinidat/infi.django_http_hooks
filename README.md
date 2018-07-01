@@ -73,10 +73,10 @@ Signals can be django known signals (such as post_save, post_delete etc.) or cus
     * A string containing pairs of key & value seperated by ':' and each pair should be in a new row (=\r\n)
     * Invalid headers will raise exceptions.InvalidHeadersError.
     * e.g:
-        ```text
+```text
               api-key: 12345
               Content-Length: 256
-        ```
+```
 * content_type - Content type of the request's payload. **Will be validated against the given payload template** 
 * http_method - The method of the request (POST, PUT, PATCH etc.)
 * payload_template - Template to be filled by any required details of the instance which triggered the hook or/and the details of the event which triggered the hook.  
@@ -85,9 +85,9 @@ Signals can be django known signals (such as post_save, post_delete etc.) or cus
     * In case the hook has a content type, its payload template will be validated against this content type to check it stands the content type. 
     * Invalid payload template will raise exceptions.InvalidPayloadError.  
     * e.g: 
-        ```json
+```json
             {"id": {{id}}, "event_type": "{{event_type}}", "name": "{{name}}" }
-        ```
+```
 * serializer_class - full path of a serializer class (inherit from rest_framework.serializers.serializer)  
     * The given serializer is expected to support the method to_representation().  
     * Invalid serializer class will raise exceptions.InvalidPayloadError.   
