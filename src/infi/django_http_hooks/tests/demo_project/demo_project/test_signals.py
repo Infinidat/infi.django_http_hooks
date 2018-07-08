@@ -33,7 +33,7 @@ class SignalsTestCase(TestCase):
 
 
     def test_hook_is_working(self):
-        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         new_user = User(username='aaa', password='aaa')
         new_user.save()
         self.assertEqual(len(Callback.objects.filter(hook=hook)), 1)
@@ -42,7 +42,7 @@ class SignalsTestCase(TestCase):
     def test_hook_is_not_working_for_another_model(self):
         '''test hook is working only for its own model'''
 
-        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         new_group = Group(name='test group')
         new_group.save()
         self.assertFalse(Callback.objects.filter(hook__model=ContentType.objects.get(model='group')))
@@ -51,9 +51,9 @@ class SignalsTestCase(TestCase):
     def test_adding_hook(self):
         '''test that adding an hook is affective'''
 
-        hook_save = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook_save = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         # adding an hook
-        hook_delete = create_hook(signals=['django.db.models.signals.post_delete'], model='group', user=self.user_)
+        hook_delete = create_hook(signals=['django.db.models.signals.post_delete'], model='group')
 
         new_user = User(username='aaa', password='aaa')
         new_user.save()
@@ -70,9 +70,9 @@ class SignalsTestCase(TestCase):
     def test_unique_model(self):
         '''make sure its impossible to create two hooks for the same model'''
 
-        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         try:
-            hook2 = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+            hook2 = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         except Exception, e:
             self.assertIs(type(e), IntegrityError)
         else:
@@ -82,7 +82,7 @@ class SignalsTestCase(TestCase):
     def test_event_type_created(self):
         '''test the logic of event_type in the payload results in case of creating an instance'''
 
-        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         new_user = User(username='aaa', password='aaa')
         new_user.save()
         callback_ = Callback.objects.get(hook=hook)
@@ -93,7 +93,7 @@ class SignalsTestCase(TestCase):
     def test_event_type_updated(self):
         '''test the logic of event_type in the payload results in case of updating an instance'''
 
-        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save'], model='user')
         self.user_.last_name = 'zzz'
         self.user_.save()
         callback_ = Callback.objects.get(hook=hook)
@@ -101,50 +101,14 @@ class SignalsTestCase(TestCase):
         self.assertEqual(payload['event_type'], 'updated')
 
 
-    def test_invalid_payload_template(self):
-        # '''test that the process creates a callback with error when cannot process a valid payload due to invalid payload template'''
-
-        hook = create_hook(signals=['django.db.models.signals.post_save'],
-                           model='group',
-                           # payload template is missing a bracket "{":
-                           payload_template='"id": {{id}}, "event_type": "{{event_type}}" }',
-                           user=self.user_)
-
-        new_group = Group(name='zzzz')
-        new_group.save()
-
-        callback_res = Callback.objects.filter(status='error', hook=hook)
-        self.assertEqual(len(callback_res), 1)
-        callback = callback_res[0]
-        self.assertTrue('invalid JSON' in callback.status_details)
-
-
-    def test_invalid_payload_serializer(self):
-        # '''test that the process creates a callback with error when cannot process a valid payload due to invalid serializer class'''
-
-        hook = create_hook(signals=['django.db.models.signals.post_save'],
-                           model='group',
-                           # dummy serializer should be failed during import
-                           serializer_class='dummy.serializer',
-                           user=self.user_)
-
-        new_group = Group(name='zzzz')
-        new_group.save()
-
-        callback_res = Callback.objects.filter(status='error', hook=hook)
-        self.assertEqual(len(callback_res), 1)
-        callback = callback_res[0]
-        self.assertTrue('cannot import' in callback.status_details)
-
-
     def test_invalid_headers(self):
         # '''test that the process creates a callback with error when cannot process valid headers'''
 
         hook = create_hook(signals=['django.db.models.signals.post_save'],
                            model='group',
-                           # headers ares missing a bracket "{":
-                           headers='"token": "1234" }',
-                           user=self.user_)
+                           # headers ares missing a bracket colon ":"
+                           headers="token 1234"
+                           )
 
         new_group = Group(name='zzzz')
         new_group.save()
@@ -158,7 +122,7 @@ class SignalsTestCase(TestCase):
     def test_hook_with_multiple_signals(self):
         '''test that all signal of an hook are working'''
 
-        hook = create_hook(signals=['django.db.models.signals.post_save', 'django.db.models.signals.post_delete'], model='group', user=self.user_)
+        hook = create_hook(signals=['django.db.models.signals.post_save', 'django.db.models.signals.post_delete'], model='group')
         new_group = Group(name='zzzz')
         new_group.save()
 
@@ -176,7 +140,7 @@ class SignalsTestCase(TestCase):
     def test_create_hook_with_invalid_signal(self):
         '''test that creating hook with invalid signal raise expected InvalidSignalError'''
         try:
-            hook = create_hook(signals=['dummy.signal'], model='user', user=self.user_)
+            hook = create_hook(signals=['dummy.signal'], model='user')
         except Exception, e:
             self.assertIs(type(e), InvalidSignalError)
         else:
@@ -191,15 +155,13 @@ class SignalsTestCase(TestCase):
                            model='user',
                            target_url='http://127.0.0.1:8080',
                            http_method='POST',
-                           content_type='application/json',
-                           user=self.user_)
+                           content_type='application/json')
         new_user = User(username='aaa', password='aaa')
         new_user.save()
 
         callback_res = Callback.objects.filter(status='waiting', hook=hook)
         self.assertEqual(len(callback_res), 1)
         callback = callback_res[0]
-
         res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
 
         res_dict = res.json()
@@ -218,8 +180,8 @@ class SignalsTestCase(TestCase):
         self.assertEqual(object_serialization['password'], new_user.password)
 
 
-    def test_payload_template(self):
-        '''test that payload template does work and is created with expected details'''
+    def test_payload_template_json(self):
+        '''test that payload template does work with json template and is created with expected details'''
 
         hook = create_hook(signals=['django.db.models.signals.post_save'], model='user',
                            target_url='http://127.0.0.1:8080',
@@ -235,13 +197,97 @@ class SignalsTestCase(TestCase):
         callback = callback_res[0]
 
         res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
-
         res_dict = res.json()
         payload = res_dict['payload']
         payload = json.loads(payload)
 
         self.assertEqual(payload['id'], self.user_.id)
         self.assertEqual(payload['event_type'], 'updated')
+
+
+    def test_payload_template_xml(self):
+        '''test that payload template does work with xml template and is created with expected details'''
+
+        from lxml import etree
+        hook = create_hook(signals=['django.db.models.signals.post_save'],
+                           target_url='http://127.0.0.1:8080',
+                           model='group',
+                           http_method='POST',
+                           content_type='application/xml',
+                           # payload xml is missing </a>:
+                           payload_template="<?xml version='1.0' encoding='utf-8'?><id>{{id}}</id>"
+                           )
+
+        new_group = Group(name='zzzz')
+        new_group.save()
+
+        callback_res = Callback.objects.filter(status='waiting', hook=hook)
+        self.assertEqual(len(callback_res), 1)
+        callback = callback_res[0]
+
+        res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
+        res_dict = res.json()
+
+        payload = res_dict['payload']
+        id_tag = etree.XML(bytes(bytearray(unicode(payload), encoding="utf-8")))
+        self.assertEqual(id_tag.tag, 'id')
+        self.assertEqual(int(id_tag.text), new_group.id)
+
+
+    def test_validate_payload_json(self):
+        '''test that the process creates a callback with error when cannot process a valid payload due to invalid payload json template'''
+
+        hook = create_hook(signals=['django.db.models.signals.post_save'],
+                           model='group',
+                           content_type='application/json',
+                           # payload template is missing a bracket "{":
+                           payload_template='"id": {{id}}, "event_type": "{{event_type}}" }'
+                           )
+
+        new_group = Group(name='zzzz')
+        new_group.save()
+
+        callback_res = Callback.objects.filter(status='error', hook=hook)
+        self.assertEqual(len(callback_res), 1)
+        callback = callback_res[0]
+        self.assertTrue('invalid JSON' in callback.status_details)
+
+
+    def test_validate_payload_xml(self):
+        '''test that the process creates a callback with error when cannot process a valid payload due to invalid payload json template'''
+
+        hook = create_hook(signals=['django.db.models.signals.post_save'],
+                           model='group',
+                           content_type='application/xml',
+                           # payload xml is missing </a>:
+                           payload_template="<?xml version='1.0' encoding='utf-8'?><a>"
+                           )
+
+        new_group = Group(name='zzzz')
+        new_group.save()
+
+        callback_res = Callback.objects.filter(status='error', hook=hook)
+        self.assertEqual(len(callback_res), 1)
+        callback = callback_res[0]
+        self.assertTrue('invalid XML' in callback.status_details)
+
+
+    def test_invalid_payload_serializer(self):
+        '''test that the process creates a callback with error when cannot process a valid payload due to invalid serializer class'''
+
+        hook = create_hook(signals=['django.db.models.signals.post_save'],
+                           model='group',
+                           # dummy serializer should be failed during import
+                           serializer_class='dummy.serializer'
+                           )
+
+        new_group = Group(name='zzzz')
+        new_group.save()
+
+        callback_res = Callback.objects.filter(status='error', hook=hook)
+        self.assertEqual(len(callback_res), 1)
+        callback = callback_res[0]
+        self.assertTrue('cannot import' in callback.status_details)
 
 
     def test_hook_headers(self):
@@ -252,8 +298,8 @@ class SignalsTestCase(TestCase):
                            target_url='http://127.0.0.1:8080',
                            http_method='POST',
                            content_type='application/json',
-                           headers='{"test-token": "12345"}',
-                           user=self.user_)
+                           headers='test-token: 12345'
+                           )
         self.user_.last_name = 'zzz'
         self.user_.save()
 
@@ -272,7 +318,7 @@ class SignalsTestCase(TestCase):
         '''test that hook with custom signal works as expected'''
 
         hook = create_hook(signals=['infi.django_http_hooks.tests.demo_project.demo_project.test_signals.custom_signal'],
-                           model='user', user=self.user_)
+                           model='user')
         self.user_.last_name = 'zzz'
         self.user_.save()
         callback_res = Callback.objects.filter(status='waiting', hook=hook)

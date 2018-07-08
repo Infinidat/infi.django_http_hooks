@@ -3,9 +3,9 @@ from django.template import Template, Context
 from django.core import serializers
 from infi.django_http_hooks.hooks.models import Callback
 from .exceptions import *
-import json
 from importlib import import_module
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +23,7 @@ def create_callback(hook, **kwargs):
                             create_datetime = now_,
                             target_url      = hook.target_url,
                             http_method     = hook.http_method,
+                            content_type    = hook.content_type,
                             hook            = hook)
 
         callback.payload = set_payload(hook, **kwargs)
@@ -38,15 +39,42 @@ def create_callback(hook, **kwargs):
 
 
 def validate_headers(headers):
+    '''
+    Expected headers is pair of values (key:value) separated by a new line e.g:
+
+    headers_key_1: headers_value_1
+    headers_key_2: headers_value_2
+    ...
+
+    '''
     try:
-        json.loads(headers)
-        return headers
-    except ValueError:
+        headers_dict = {row.split(':')[0].strip(): row.split(':')[1].strip() for row in headers.split('\r\n')}
+        headers_json = json.dumps(headers_dict)
+        return headers_json
+    except (ValueError, IndexError):
         raise InvalidHeadersError('invalid headers: {}'.format(headers))
 
 
-def set_payload(hook, **kwargs):
+def validate_payload(payload, content_type):
+    ''' Validate that the given payload is valid against the given content-type. If not given content the validation passes'''
+    if content_type == 'application/json':
+        try:
+            json.loads(payload)
+        except ValueError:
+            logger.error('Payload is an invalid JSON: {}'.format(payload))
+            raise InvalidPayloadError('Payload is an invalid JSON: {}'.format(payload))
+    elif content_type in ['application/xml', 'text/xml']:
+        from lxml import etree
+        xml = bytes(bytearray(unicode(payload), encoding="utf-8"))
+        try:
+            etree.XML(xml)
+        except etree.XMLSyntaxError:
+            logger.error('Payload is an invalid xml: {}'.format(payload))
+            raise InvalidPayloadError('Payload is an invalid XML: {}'.format(payload))
 
+
+def set_payload(hook, **kwargs):
+    '''Set the payload according to given payload_tamplate or serializer_class. If both are missing returns a default payload'''
     instance = kwargs.get('instance')
     # setting payload
     if hook.payload_template:
@@ -56,11 +84,6 @@ def set_payload(hook, **kwargs):
         template = Template(hook.payload_template)
         c = Context(context)
         payload = template.render(c)
-        try:
-            json.loads(payload)
-        except ValueError:
-            logger.error('Payload template created an invalid JSON: {}'.format(payload))
-            raise InvalidPayloadError('Payload template created an invalid JSON: {}'.format(payload))
 
     elif hook.serializer_class:
         # serializer_class is expected to be a comma separated string: <path.to.serializer_class>
@@ -86,6 +109,7 @@ def set_payload(hook, **kwargs):
             'object_serialization': object_serialization.get('fields')
         })
 
+    validate_payload(payload, hook.content_type)
     return payload
 
 

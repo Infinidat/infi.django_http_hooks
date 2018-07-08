@@ -63,19 +63,31 @@ An Hook can be related to any model in the django project and to multiple valid 
 Signals can be django known signals (such as post_save, post_delete etc.) or custom ones (inherit from django.dispatch.dispatcher.Signal).  
 **The django_http_hooks models are being registered in the admin page so Hooks can be added or manipulated via the admin page as well as using api.**
 
-* model - A foreign column to django ContentType model. Can be any model existed in the django project.
+* name - A name describing the hook. It will be the name of the hook in each of its callbacks.
+* model - A foreign key column to django ContentType model. Can be any model existed in the django project.
 * signals - A many to many column to django_http_models.models.Signal model.   
     * **Important: A signal object is composed from signal name. The name should be the full path of the signal (e.g 'django.db.models.signals.post_delete')**
     * Invalid signal (illegal path to import) will raise InvalidSignalError. 
 * target_url - A valid complete url address to send the request to. 
 * headers - Headers to be sent with the request.   
-    * **Must be a valid json.** Invalid headers will raise exceptions.InvalidHeadersError.
-* content_type - Content type of the request's payload.  
+    * A string containing pairs of key & value seperated by ':' and each pair should be in a new row (=\r\n)
+    * Invalid headers will raise exceptions.InvalidHeadersError.
+    * e.g:
+```text
+              api-key: 12345
+              Content-Length: 256
+```
+* content_type - Content type of the request's payload. **Will be validated against the given payload template** 
 * http_method - The method of the request (POST, PUT, PATCH etc.)
-* payload_template - Template to be filled by the details of the instance which triggered the hook and the details of the event which triggered the hook.  
-    * The template should be a valid json, and variable templates should be closed with double braces.  
+* payload_template - Template to be filled by any required details of the instance which triggered the hook or/and the details of the event which triggered the hook.  
+    * The template can be either a valid json or a valid xml or any other string which will be accepted when sending the hook, and variable templates should be closed with double braces.  
     * Event type keys are: event_type and any other arguments which are being sent by the signal of the hook.
+    * In case the hook has a content type, its payload template will be validated against this content type to check it stands the content type. 
     * Invalid payload template will raise exceptions.InvalidPayloadError.  
+    * e.g: 
+```json
+            {"id": {{id}}, "event_type": "{{event_type}}", "name": "{{name}}" }
+```
 * serializer_class - full path of a serializer class (inherit from rest_framework.serializers.serializer)  
     * The given serializer is expected to support the method to_representation().  
     * Invalid serializer class will raise exceptions.InvalidPayloadError.   
@@ -99,10 +111,10 @@ from infi.django_http_hooks.api import create_hook, create_signal
                            http_method='POST',
                            content_type='application/json',
                            headers='{"test-token": "12345"}',
-                           user=<User object>)
+                           name='<Hook name>'
+                        )
                            
-        signal = create_signal(signal='django.db.models.signals.post_delete',
-                               user=<User object>)
+        signal = create_signal(signal='django.db.models.signals.post_delete')
 
 ```
 

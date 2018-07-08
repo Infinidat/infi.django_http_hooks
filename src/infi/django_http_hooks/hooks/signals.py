@@ -25,8 +25,11 @@ def init():
 
 
 def invalidate_hooks(**kwargs):
-    # executes a custom command configured in the Django settings of the projects which is using django_http_hooks
-    # this command should reload the server
+    '''
+    Executes a custom command configured in the Django settings of the projects which is using django_http_hooks
+    Important: This executed command should reload the server
+    '''
+
     if hasattr(settings, 'DJANGO_HTTP_HOOKS_RELOAD') and settings.DJANGO_HTTP_HOOKS_RELOAD:
         try:
             check_output(settings.DJANGO_HTTP_HOOKS_RELOAD)
