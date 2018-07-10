@@ -73,6 +73,7 @@ Signals can be django known signals (such as post_save, post_delete etc.) or cus
     * A string containing pairs of key & value seperated by ':' and each pair should be in a new row (=\r\n)
     * Invalid headers will raise exceptions.InvalidHeadersError.
     * e.g:
+    
 ```text
               api-key: 12345
               Content-Length: 256
@@ -81,12 +82,15 @@ Signals can be django known signals (such as post_save, post_delete etc.) or cus
 * http_method - The method of the request (POST, PUT, PATCH etc.)
 * payload_template - Template to be filled by any required details of the instance which triggered the hook or/and the details of the event which triggered the hook.  
     * The template can be either a valid json or a valid xml or any other string which will be accepted when sending the hook, and variable templates should be closed with double braces.  
+    * In order to use attributes of the instance which triggered the hook, use a prefix of "instance" before the name of the attribute. **Nested attributes are supported** 
     * Event type keys are: event_type and any other arguments which are being sent by the signal of the hook.
     * In case the hook has a content type, its payload template will be validated against this content type to check it stands the content type. 
     * Invalid payload template will raise exceptions.InvalidPayloadError.  
     * e.g: 
+    
 ```json
-            {"id": {{id}}, "event_type": "{{event_type}}", "name": "{{name}}" }
+            {"instance_id": {{instance.id}}, "event_type": "{{event_type}}", "instance_name": "{{instance.name}}",
+             "nested_attribute": "{{instance.nested_attribute.name}}"}
 ```
 * serializer_class - full path of a serializer class (inherit from rest_framework.serializers.serializer)  
     * The given serializer is expected to support the method to_representation().  

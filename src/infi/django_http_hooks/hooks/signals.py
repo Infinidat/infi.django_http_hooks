@@ -33,8 +33,8 @@ def invalidate_hooks(**kwargs):
     if hasattr(settings, 'DJANGO_HTTP_HOOKS_RELOAD') and settings.DJANGO_HTTP_HOOKS_RELOAD:
         try:
             check_output(settings.DJANGO_HTTP_HOOKS_RELOAD)
-        except Exception:
-            logger.error('Cannot reload hooks')
+        except Exception, e:
+            logger.error('Cannot reload hooks: {}'.format(e))
             if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
                 raise
     else:
@@ -44,6 +44,7 @@ def invalidate_hooks(**kwargs):
 def init_hooks(**kwargs):
     '''populate cached variable hooks with all records of Hook model. Should be called for every change in Hook'''
     global hooks
+    # fixme : every key in dict should contain a list of hooks (all hooks of the same model and signal)
     try:
         all_hooks = Hook.objects.all()
         # go over all hooks and for each hook go over all its signals
@@ -53,9 +54,10 @@ def init_hooks(**kwargs):
                 # if the same hook (model & signal) is already registered, do not register the signal again. Only updating hooks
                 if not hooks.get('{}_{}'.format(h.model, signal.signal)):
                     register_signal(signal.signal, h.model)
-                hooks['{}_{}'.format(h.model, signal.signal)] = h
+                hooks['{}_{}'.format(h.model.model, signal.signal)] = h
     except Exception, e:
         # raise the exception only if it was configured in the project's settings
+        logger.error('Cannot initialize hooks: {}'.format(e))
         if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
             raise
 
@@ -70,7 +72,7 @@ def register_signal(signal_name, model):
     # get the signal object in order to connect it to the handler- will raise InvalidSignalHandlerError if signal cannot be imported
     s = create_signal(signal_name, create=False)
 
-    model_cls = apps.get_model(app_label=model.app_label, model_name=model.name)
+    model_cls = apps.get_model(app_label=model.app_label, model_name=model.model)
     s.connect(handler_, weak=False, sender=model_cls)
 
     logger.info('registered signal {} with model {}'.format(signal_name, model.name))
@@ -84,6 +86,7 @@ def handler(sender, signal_, **kwargs):
         hook_key = '{}_{}'.format(sender.__name__.lower(), signal_)
 
         hook = hooks.get(hook_key)
+        # fixme: hooks should be a list and need to run over all the hooks in this list
         if hook:
             # differentiate between post_save/pre_save caused by create event against update event
             if 'save' in signal_:

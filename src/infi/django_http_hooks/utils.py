@@ -78,11 +78,10 @@ def set_payload(hook, **kwargs):
     instance = kwargs.get('instance')
     # setting payload
     if hook.payload_template:
-        context = dict()
+        context = dict(instance=instance)
         context.update(kwargs)
-        context.update(instance.__dict__)
-        template = Template(hook.payload_template)
         c = Context(context)
+        template = Template(hook.payload_template)
         payload = template.render(c)
 
     elif hook.serializer_class:

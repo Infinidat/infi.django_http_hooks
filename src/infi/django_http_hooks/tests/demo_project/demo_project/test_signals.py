@@ -66,7 +66,7 @@ class SignalsTestCase(TestCase):
         new_group.delete()
         self.assertEqual(len(Callback.objects.filter(hook=hook_delete)), 1)
 
-
+    # fixme: replace with test for checking multiple hooks for the same model and signal
     def test_unique_model(self):
         '''make sure its impossible to create two hooks for the same model'''
 
@@ -187,15 +187,15 @@ class SignalsTestCase(TestCase):
                            target_url='http://127.0.0.1:8080',
                            http_method='POST',
                            content_type='application/json',
-                           payload_template='{"id": {{id}}, "event_type": "{{event_type}}" }',
+                           payload_template='{"id": {{instance.id}}, "event_type": "{{event_type}}" }',
                            user=self.user_)
         self.user_.last_name = 'zzz'
         self.user_.save()
 
         callback_res = Callback.objects.filter(status='waiting', hook=hook)
+
         self.assertEqual(len(callback_res), 1)
         callback = callback_res[0]
-
         res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
         res_dict = res.json()
         payload = res_dict['payload']
@@ -215,7 +215,7 @@ class SignalsTestCase(TestCase):
                            http_method='POST',
                            content_type='application/xml',
                            # payload xml is missing </a>:
-                           payload_template="<?xml version='1.0' encoding='utf-8'?><id>{{id}}</id>"
+                           payload_template="<?xml version='1.0' encoding='utf-8'?><id>{{instance.id}}</id>"
                            )
 
         new_group = Group(name='zzzz')
@@ -241,7 +241,7 @@ class SignalsTestCase(TestCase):
                            model='group',
                            content_type='application/json',
                            # payload template is missing a bracket "{":
-                           payload_template='"id": {{id}}, "event_type": "{{event_type}}" }'
+                           payload_template='"id": {{instance.id}}, "event_type": "{{event_type}}" }'
                            )
 
         new_group = Group(name='zzzz')
