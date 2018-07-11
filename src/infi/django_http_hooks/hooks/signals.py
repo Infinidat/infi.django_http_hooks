@@ -55,7 +55,7 @@ def init_hooks(**kwargs):
                 for signal in h.signals.all():
                     key_ = '{}_{}'.format(h.model.model, signal.signal)
                     hooks.setdefault(key_, [])
-                    # do not registered a signal and a model more than once!
+                    # do not register a signal and a model more than once!
                     if not hooks.get(key_):
                         register_signal(signal.signal, h.model)
                     hooks[key_].append(h)
