@@ -23,21 +23,22 @@ class Hook(models.Model):
     update_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
     create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
-    # Signal details: Can be only one Hook for a model. An hook can be connected to multiple signals.
-    model               = models.OneToOneField(ContentType)
+    # Signal details: An hook can be connected to multiple signals.
+    model               = models.ForeignKey(ContentType)
     signals             = models.ManyToManyField(Signal)
+    enabled             = models.BooleanField(default=True)
 
     # Hook HTTP Request details.
     target_url          = models.URLField(max_length=512)
     http_method         = models.CharField(max_length=64, default='POST', choices=[(m, m) for m in HTTP_METHODS])
-    headers             = models.TextField(null=True, blank=True)
-    payload_template    = models.TextField(null=True, blank=True, help_text='Use {{}} for variables template. Placeholder names can be any attribute in the model. Leave empty for default payload. See documentation for further details.  ')
+    headers             = models.TextField(null=True, blank=True, help_text='Headers should be pairs of key & value seperated by ":" and each pair should be in a new row. E.g: api-key: 12345 ')
+    payload_template    = models.TextField(null=True, blank=True, help_text='Use {{}} for variables template. Placeholder names can be any attribute in the model using a prefix of "instance.". Leave empty for default payload. See documentation for further details.  ')
     serializer_class    = models.CharField(max_length=256, null=True, blank=True, help_text='Full path of the serializer class. Leave empty for default payload.')
     content_type        = models.CharField(max_length=128, null=True, blank=True, choices=[(c, c) for c in CONTENT_TYPES])
 
 
     def __str__(self):
-        return '{name}({date})'.format(name=self.name, date=self.create_datetime.date())
+        return '{name}({date})'.format(name=self.name or self.model.name, date=self.create_datetime.date())
 
 
 class Callback(models.Model):

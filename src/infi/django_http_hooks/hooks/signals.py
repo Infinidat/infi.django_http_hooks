@@ -44,17 +44,22 @@ def invalidate_hooks(**kwargs):
 def init_hooks(**kwargs):
     '''populate cached variable hooks with all records of Hook model. Should be called for every change in Hook'''
     global hooks
-    # fixme : every key in dict should contain a list of hooks (all hooks of the same model and signal)
+    hooks = {}
+    # each key in hooks holds a list of all hooks related to the same model and signal
     try:
         all_hooks = Hook.objects.all()
         # go over all hooks and for each hook go over all its signals
-        # Can be only one appearance of each Model in all_hooks
         for h in all_hooks:
-            for signal in h.signals.all():
-                # if the same hook (model & signal) is already registered, do not register the signal again. Only updating hooks
-                if not hooks.get('{}_{}'.format(h.model, signal.signal)):
-                    register_signal(signal.signal, h.model)
-                hooks['{}_{}'.format(h.model.model, signal.signal)] = h
+            # register only enabled hooks
+            if h.enabled:
+                for signal in h.signals.all():
+                    key_ = '{}_{}'.format(h.model.model, signal.signal)
+                    hooks.setdefault(key_, [])
+                    # do not registered a signal and a model more than once!
+                    if not hooks.get(key_):
+                        register_signal(signal.signal, h.model)
+                    hooks[key_].append(h)
+        return hooks
     except Exception, e:
         # raise the exception only if it was configured in the project's settings
         logger.error('Cannot initialize hooks: {}'.format(e))
@@ -85,9 +90,8 @@ def handler(sender, signal_, **kwargs):
         # search for the hook of the given sender and signal name according to key composed from signal_name & sender
         hook_key = '{}_{}'.format(sender.__name__.lower(), signal_)
 
-        hook = hooks.get(hook_key)
-        # fixme: hooks should be a list and need to run over all the hooks in this list
-        if hook:
+        hooks_list = hooks.get(hook_key, [])
+        for hook in hooks_list:
             # differentiate between post_save/pre_save caused by create event against update event
             if 'save' in signal_:
                 event_type = 'created' if kwargs.get('created') else 'updated'

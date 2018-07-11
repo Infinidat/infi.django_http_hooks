@@ -6,13 +6,13 @@ from models import Hook, Callback, Signal
 
 
 class HookAdmin(admin.ModelAdmin):
-    list_display = ('name', 'model', 'target_url', 'create_datetime', 'update_datetime')
+    list_display = ('name', 'model', 'target_url', 'create_datetime', 'update_datetime', 'enabled')
     search_fields = ('model', 'name', 'target_url')
     filter_horizontal = ('signals',)
 
     fieldsets = (
         ('General Hook Details', {
-            'fields': ('name', 'model', 'signals')
+            'fields': ('name', 'enabled', 'model', 'signals')
         }),
         ('Hook HTTP Request Details', {
             'fields': ('target_url', 'http_method', 'headers', 'content_type', 'payload_template', 'serializer_class')

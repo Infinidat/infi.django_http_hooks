@@ -1,9 +1,7 @@
-import sys
 from django.contrib.contenttypes.models import ContentType
 from infi.django_http_hooks.hooks.models import Hook, Signal
-
+import hooks.signals
 from infi.django_http_hooks.utils import dynamic_import
-
 from .exceptions import *
 
 
@@ -36,15 +34,15 @@ def create_hook(signals, model=None, **kwargs):
                 payload_template =kwargs.get('payload_template'),
                 serializer_class =kwargs.get('serializer_class'),
                 content_type     =kwargs.get('content_type'),
-                name             =kwargs.get('name'))
+                name             =kwargs.get('name'),
+                enabled          =kwargs.get('enabled', True))
     hook.save()
     for signal in signals:
         signal_ = create_signal(signal, create=True)
-
         hook.signals.add(signal_)
 
-    # calling init_hooks to register all signals only in testing mode. Not in testing, the init_hooks will be triggered automatically by invalidate_hooks
-    if 'test' in sys.argv:
-        from infi.django_http_hooks.hooks.signals import init_hooks
-        init_hooks()
     return hook
+
+
+def init():
+    hooks.signals.init_hooks()

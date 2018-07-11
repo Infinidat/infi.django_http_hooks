@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'demo_app',
     'infi.django_http_hooks.hooks'
 ]
 
@@ -120,8 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-DJANGO_HTTP_HOOKS_RELOAD = ['touch', 'demo_project/wsgi.py']
+DJANGO_HTTP_HOOKS_RELOAD = ['touch', os.path.join(BASE_DIR, 'demo_project/wsgi.py')]
 
-# DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS = False
+DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS = True
 
 # DJANGO_HTTP_HOOKS_SHUT_DOWN = True
