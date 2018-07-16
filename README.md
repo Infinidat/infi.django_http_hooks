@@ -141,3 +141,12 @@ The send_callbacks process will update any processed callback, with the response
 - Successfull request will update the callback status_details with the status code
 - Failed request will update the callback status_details with the error details
 - The callback update_datetime will be updated to the run time and its status will be updated to 'sent' or 'error'.
+
+#### Monitor Callbacks
+Run the management command monitor_callbacks in order to check if there are too many failed or waiting callbacks.
+
+    manage monitor_callbacks --status 'error' --callbacks_limit 50 --minutes_ago 10
+    
+- The monitor_callbacks process will exit with status 1 in case that found more callbacks in the minutes_ago than the given callbacks_limit value.
+- The status argument can be 'error' or 'waiting'.
+- Status is a mandatory input. Default value for callbacks_limit and minutes_ago is 10.  
