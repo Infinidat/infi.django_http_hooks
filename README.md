@@ -145,8 +145,11 @@ The send_callbacks process will update any processed callback, with the response
 #### Monitor Callbacks
 Run the management command monitor_callbacks in order to check if there are too many failed or waiting callbacks.
 
+E.g:
+
     manage monitor_callbacks --status 'error' --callbacks_limit 50 --minutes_ago 10
     
 - The monitor_callbacks process will exit with status 1 in case that found more callbacks in the minutes_ago than the given callbacks_limit value.
 - The status argument can be 'error' or 'waiting'.
-- Status is a mandatory input. Default value for callbacks_limit and minutes_ago is 10.  
+- If minutes_ago left blank, the process will check for callbacks in the entire Callbacks table. 
+- Status is a mandatory input. Default value for callbacks_limit is 10.  
