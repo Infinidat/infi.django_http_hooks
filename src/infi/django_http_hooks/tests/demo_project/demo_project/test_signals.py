@@ -7,8 +7,7 @@ from infi.django_http_hooks.hooks.models import Hook, Callback
 from infi.django_http_hooks.http_requests import send_request
 from infi.django_http_hooks.tests.wsgi_server import runserver
 from infi.django_http_hooks.exceptions import *
-from infi.django_http_hooks.api import create_hook
-from infi.django_http_hooks.hooks.signals import init_hooks
+from infi.django_http_hooks.api import create_hook, init
 from demo_app.models import ModelA, ModelB, ModelC, ModelD, ModelE, ModelF, ModelG
 from django.dispatch.dispatcher import Signal as django_signal
 
@@ -41,7 +40,6 @@ class SignalsTestCase(TestCase):
 
 
     def test_hook_is_working(self):
-        # hook = create_hook(signals=['django.db.models.signals.post_save'], model='user', name='test hook')
         new_user = User(username='aaa', password='aaa')
         new_user.save()
         self.assertEqual(len(Callback.objects.filter(hook=self.save_user_hook, status='waiting')), 1)
@@ -335,7 +333,7 @@ class SignalsTestCase(TestCase):
                                              enabled=False
                                              )
 
-        registered_hooks = init_hooks()
+        registered_hooks = init()
         # test that init_hooks created hooks
         assert len(registered_hooks.keys()) == 11
         assert sum([len(v) for v in registered_hooks.values()]) == 12
