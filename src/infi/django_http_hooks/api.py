@@ -1,6 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
 from infi.django_http_hooks.hooks.models import Hook, Signal
-import hooks.signals
 from infi.django_http_hooks.utils import dynamic_import
 from .exceptions import *
 
@@ -45,4 +44,5 @@ def create_hook(signals, model=None, **kwargs):
 
 
 def init():
-    hooks.signals.init_hooks()
+    from hooks.signals import init_hooks
+    return init_hooks()
