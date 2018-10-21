@@ -16,7 +16,7 @@ hooks = {}
 
 def init():
     '''being called only by HooksConfig.ready()'''
-    logger.info('Initialize Django HTTP Hooks')
+    logger.debug('Initialize Django HTTP Hooks')
     all_tables = connection.introspection.table_names()
     if 'hooks_hook' in all_tables:
         post_save.connect(invalidate_hooks, sender=Hook, weak=False)
@@ -80,7 +80,7 @@ def register_signal(signal_name, model):
     model_cls = apps.get_model(app_label=model.app_label, model_name=model.model)
     s.connect(handler_, weak=False, sender=model_cls)
 
-    logger.info('registered signal {} with model {}'.format(signal_name, model.name))
+    logger.debug('registered signal {} with model {}'.format(signal_name, model.name))
 
 
 def handler(sender, signal_, **kwargs):
