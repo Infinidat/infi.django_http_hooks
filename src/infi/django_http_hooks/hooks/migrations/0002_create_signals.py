@@ -19,6 +19,10 @@ def create_signals(apps, schema_editor):
         signal_model.objects.create(signal=signal)
 
 
+def delete_signals(apps, schema_editor):
+    signal_model = apps.get_model("hooks", "Signal")
+    signal_model.objects.filter(signal__in=COMMON_SIGNALS).delete()
+
 
 class Migration(migrations.Migration):
 
@@ -27,5 +31,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_signals)
+        migrations.RunPython(create_signals, reverse_code=delete_signals)
     ]
