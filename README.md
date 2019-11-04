@@ -13,7 +13,14 @@ It features:
 
 Installation
 -----
-a. Add infi.django_http_hooks to the `INSTALLED_APPS` in your settings file:
+
+a. Checkout the code by:
+```
+easy_install -U infi.projector
+projector devenv build
+```
+
+b. Add infi.django_http_hooks to the `INSTALLED_APPS` in your settings file:
 
 ```python
     INSTALLED_APPS = (
@@ -22,14 +29,18 @@ a. Add infi.django_http_hooks to the `INSTALLED_APPS` in your settings file:
     )
 ```
 
-b. Configure the setting DJANGO_HTTP_HOOKS_RELOAD (see instructions in 'Configure settings')
+c. Configure the setting DJANGO_HTTP_HOOKS_RELOAD (see instructions in 'Configure settings')
 
-c. Schedule the send_callbacks management command, in order to send the HTTP requests on the required frequency.
+d. Schedule the send_callbacks management command, in order to send the HTTP requests on the required frequency.
 
 Running Tests
 -------------
-    python src/infi/django_http_hooks/tests/demo_project/manage.py test
+In order to run test go the folder:
 
+    src/infi/django_http_hooks/tests/demo_project
+and use this command to run the tests:
+
+    ./manage.py test
 
 Usage
 ----
@@ -45,7 +56,7 @@ This command should be compatible with the environment and OS which the django p
 For example:   
 - ['touch', 'demo_project/wsgi.py'] - Useful when django runs on local development server. 
 Will update a file in the django project which will cause the server to refresh.
-- ['service', 'gunicorn', 'restart'] - Useful when django is deployed on Ubuntu server. Will restart the gunicorn service.   
+- ['service', 'gunicorn', 'restart'] - Useful when django is deployed on Ubuntu server. Will reload the gunicorn service.
  
 
 ###### DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS 
@@ -152,4 +163,13 @@ E.g:
 - The monitor_callbacks process will exit with status 1 in case that found more callbacks in the minutes_ago than the given callbacks_limit value.
 - The status argument can be 'error' or 'waiting'.
 - If minutes_ago left blank, the process will check for callbacks in the entire Callbacks table. 
-- Status is a mandatory input. Default value for callbacks_limit is 10.  
+- Status is a mandatory input. Default value for callbacks_limit is 10.
+
+#### Delete old callbacks
+Run the management command delete_old_callbacks in order to delete callbacks created prior the given days back.
+
+E.g:
+
+    manage delete_old_callbacks 30
+
+Will keep only callbacks created in the last 30 days.
