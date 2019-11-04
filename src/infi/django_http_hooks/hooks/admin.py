@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
+from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
 from models import Hook, Callback, Signal
 
 
@@ -22,8 +23,8 @@ class HookAdmin(admin.ModelAdmin):
 
 class CallbackAdmin(admin.ModelAdmin):
     list_display = ('hook', 'status', 'status_details', 'create_datetime')
-    search_fields = ('hook', 'name')
-
+    search_fields = ('hook', 'target_url', 'status_details')
+    list_filter = [('hook', RelatedDropdownFilter), 'status']
 
 class SignalAdmin(admin.ModelAdmin):
     list_display = ('signal', 'create_datetime')

@@ -34,7 +34,7 @@ def invalidate_hooks(**kwargs):
         try:
             check_output(settings.DJANGO_HTTP_HOOKS_RELOAD)
         except Exception, e:
-            logger.error('Cannot reload hooks: {}'.format(e))
+            logger.error('Cannot reload hooks using command {}. Error: {}'.format(settings.DJANGO_HTTP_HOOKS_RELOAD, e))
             if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
                 raise
     else:
