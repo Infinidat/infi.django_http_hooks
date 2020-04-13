@@ -33,7 +33,7 @@ def process_request(environ, start_response):
 
 
 def runserver():
-    server = pywsgi.WSGIServer(('127.0.0.1', 8080), process_request)
+    server = pywsgi.WSGIServer(('127.0.0.1', 3000), process_request)
     server.serve_forever()
 
 

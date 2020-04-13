@@ -126,7 +126,7 @@ class SignalsTestCase(TestCase):
         '''test that creating hook with invalid signal raise expected InvalidSignalError'''
         try:
             hook = create_hook(signals=['dummy.signal'], model='user')
-        except Exception, e:
+        except Exception as e:
             self.assertIs(type(e), InvalidSignalError)
         else:
             self.assertTrue(False)
@@ -192,7 +192,7 @@ class SignalsTestCase(TestCase):
         res_dict = res.json()
 
         payload = res_dict['payload']
-        id_tag = etree.XML(bytes(bytearray(unicode(payload), encoding="utf-8")))
+        id_tag = etree.XML(bytes(bytearray(payload, encoding="utf-8")))
         self.assertEqual(id_tag.tag, 'id')
         self.assertEqual(int(id_tag.text), B.id)
 

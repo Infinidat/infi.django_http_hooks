@@ -31,7 +31,7 @@ def create_callback(hook, **kwargs):
     except (InvalidPayloadError, InvalidHeadersError) as e:
         # if there are invalid payload or invalid headers, mark the callback with error
         callback.status = 'error'
-        callback.status_details = e.message
+        callback.status_details = str(e)
 
     callback.save()
 
@@ -65,7 +65,7 @@ def validate_payload(payload, content_type):
             raise InvalidPayloadError('Payload is an invalid JSON: {}'.format(payload))
     elif content_type in ['application/xml', 'text/xml']:
         from lxml import etree
-        xml = bytes(bytearray(unicode(payload), encoding="utf-8"))
+        xml = bytes(bytearray(payload, encoding="utf-8"))
         try:
             etree.XML(xml)
         except etree.XMLSyntaxError:

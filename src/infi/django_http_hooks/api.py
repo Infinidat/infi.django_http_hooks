@@ -44,5 +44,5 @@ def create_hook(signals, model=None, **kwargs):
 
 
 def init():
-    from hooks.signals import init_hooks
+    from .hooks.signals import init_hooks
     return init_hooks()
