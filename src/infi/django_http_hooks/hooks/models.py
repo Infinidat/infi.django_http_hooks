@@ -24,7 +24,7 @@ class Hook(models.Model):
     create_datetime     = models.DateTimeField(null=True, blank=True, auto_now_add=True)
 
     # Signal details: An hook can be connected to multiple signals.
-    model               = models.ForeignKey(ContentType)
+    model               = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     signals             = models.ManyToManyField(Signal)
     enabled             = models.BooleanField(default=True)
 
@@ -51,7 +51,7 @@ class Callback(models.Model):
     content_type        = models.CharField(max_length=128, null=True, blank=True)
     http_method         = models.CharField(max_length=64, null=True, blank=True, choices=[(m, m) for m in HTTP_METHODS])
 
-    hook                = models.ForeignKey(Hook)
+    hook                = models.ForeignKey(Hook, on_delete=models.CASCADE)
 
     status              = models.CharField(max_length=64, null=True, blank=True, choices=[('waiting', 'waiting'), ('sent', 'sent'), ('error', 'error')], default='waiting')
     # storing the error details - after trying to send the request

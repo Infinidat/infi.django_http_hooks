@@ -25,7 +25,7 @@ b. Add infi.django_http_hooks to the `INSTALLED_APPS` in your settings file:
 ```python
     INSTALLED_APPS = (
         ...
-        'infi.django_http_hooks',
+        'infi.django_http_hooks.hooks',
     )
 ```
 

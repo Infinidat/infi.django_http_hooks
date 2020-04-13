@@ -28,7 +28,7 @@ def create_callback(hook, **kwargs):
 
         callback.payload = set_payload(hook, **kwargs)
         callback.headers = validate_headers(hook.headers) if hook.headers else hook.headers
-    except (InvalidPayloadError, InvalidHeadersError), e:
+    except (InvalidPayloadError, InvalidHeadersError) as e:
         # if there are invalid payload or invalid headers, mark the callback with error
         callback.status = 'error'
         callback.status_details = e.message
@@ -93,7 +93,7 @@ def set_payload(hook, **kwargs):
         try:
             # executes to_representation of the given serializer and dump it to json
             payload = json.dumps(serializer().to_representation(instance))
-        except Exception, e:
+        except Exception as e:
             logger.error('cannot execute to_representation with the given serializer: {}'.format(e.message))
             raise InvalidPayloadError('cannot execute to_representation with the given serializer: {}'.format(e.message))
     else:

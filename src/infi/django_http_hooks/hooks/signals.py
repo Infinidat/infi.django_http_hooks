@@ -6,7 +6,7 @@ from django.db import connection
 from django.db.models.signals import post_save, post_delete
 from infi.django_http_hooks.utils import create_callback
 from infi.django_http_hooks.api import create_signal
-from models import Hook
+from .models import Hook
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ def invalidate_hooks(**kwargs):
     if hasattr(settings, 'DJANGO_HTTP_HOOKS_RELOAD') and settings.DJANGO_HTTP_HOOKS_RELOAD:
         try:
             check_output(settings.DJANGO_HTTP_HOOKS_RELOAD)
-        except Exception, e:
+        except Exception as e:
             logger.error('Cannot reload hooks using command {}. Error: {}'.format(settings.DJANGO_HTTP_HOOKS_RELOAD, e))
             if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
                 raise
@@ -60,7 +60,7 @@ def init_hooks(**kwargs):
                         register_signal(signal.signal, h.model)
                     hooks[key_].append(h)
         return hooks
-    except Exception, e:
+    except Exception as e:
         # raise the exception only if it was configured in the project's settings
         logger.error('Cannot initialize hooks: {}'.format(e))
         if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
@@ -100,7 +100,7 @@ def handler(sender, signal_, **kwargs):
                 event_type = signal_
 
             create_callback(hook, event_type=event_type, **kwargs)
-    except Exception, e:
+    except Exception as e:
         logger.error('Error in Signal handler: {}'.format(e))
         # raise the exception only if it was configured in the project's settings
         if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
