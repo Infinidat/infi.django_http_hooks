@@ -1,4 +1,5 @@
 import logging
+import importlib
 from subprocess import check_output
 from django.apps import apps
 from django.conf import settings
@@ -37,6 +38,9 @@ def invalidate_hooks(**kwargs):
             logger.error('Cannot reload hooks using command {}. Error: {}'.format(settings.DJANGO_HTTP_HOOKS_RELOAD, e))
             if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
                 raise
+    elif hasattr(settings, 'DJANGO_HTTP_HOOKS_RELOAD_CALLABLE') and settings.DJANGO_HTTP_HOOKS_RELOAD_CALLABLE:
+        module_name, callable_name = settings.DJANGO_HTTP_HOOKS_RELOAD_CALLABLE.split(':')
+        getattr(importlib.import_module(module_name), callable_name)(**kwargs)
     else:
         logger.warning('Hooks have been changed. Changes wont affect until restarting the server')
 
