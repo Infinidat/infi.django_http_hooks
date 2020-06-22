@@ -22,14 +22,15 @@ def process_request(environ, start_response):
     if environ.get('HTTP_TEST_TOKEN'):
         body['test_token'] = environ['HTTP_TEST_TOKEN']
 
-    body['payload'] = environ['wsgi.input'].read()
-
+    input_ = environ['wsgi.input'].read()
+    body['payload'] = input_.decode('utf-8')
+    response_body = json.dumps(body)
     response = dict(code='200 Accepted',
-                    body=json.dumps(body))
+                    body=response_body)
 
     start_response(response['code'], HEADERS)
 
-    return [response['body']]
+    return [response['body'].encode()]
 
 
 def runserver():

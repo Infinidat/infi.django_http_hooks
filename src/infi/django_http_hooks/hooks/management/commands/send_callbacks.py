@@ -33,7 +33,7 @@ class Command(BaseCommand):
                     res = send_request(url=callback.target_url, method=callback.http_method, **callback.__dict__)
                     callback.status = 'sent'
                     callback.status_details = u'status_code:{status_code}'.format(status_code=res.status_code)
-                except (HTTPError, ConnectionError), e:
+                except (HTTPError, ConnectionError) as e:
                     callback.status_details = u'status_code:{status_code}-{error_msg}'.format(status_code=res.status_code if res else '#N/A', error_msg=e)
                     callback.status = 'error'
                     errors += 1
