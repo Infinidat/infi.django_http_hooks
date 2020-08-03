@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from django_admin_listfilter_dropdown.filters import RelatedDropdownFilter
-from models import Hook, Callback, Signal
+from .models import Hook, Callback, Signal
 
 
 class HookAdmin(admin.ModelAdmin):
