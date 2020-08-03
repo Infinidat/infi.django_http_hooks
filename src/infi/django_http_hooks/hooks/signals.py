@@ -35,9 +35,15 @@ def invalidate_hooks(**kwargs):
         try:
             check_output(settings.DJANGO_HTTP_HOOKS_RELOAD)
         except Exception as e:
-            logger.error('Cannot reload hooks using command {}. Error: {}'.format(settings.DJANGO_HTTP_HOOKS_RELOAD, e))
-            if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
-                raise
+            if 'died with <Signals.SIGTERM: 15>' in str(e):
+                # if the command failed because of dead process, need to ignore as this is the desired result: restart of the gunicorn server
+                pass
+            else:
+                # logging an error for monitoring purpose
+                logger.error('Cannot reload hooks using command {}. Error: {}'.format(settings.DJANGO_HTTP_HOOKS_RELOAD, e))
+                # raise exception only if  DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS is set to True
+                if hasattr(settings, 'DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS') and settings.DJANGO_HTTP_HOOKS_RAISE_EXCEPTIONS:
+                    raise
     elif hasattr(settings, 'DJANGO_HTTP_HOOKS_RELOAD_CALLABLE') and settings.DJANGO_HTTP_HOOKS_RELOAD_CALLABLE:
         module_name, callable_name = settings.DJANGO_HTTP_HOOKS_RELOAD_CALLABLE.split(':')
         getattr(importlib.import_module(module_name), callable_name)(**kwargs)
